@@ -3,87 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Pearl</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Black Pearl Associates</title>
+      <!-- Standard favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/gZH8xwDg/myadaline-logo-modified.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/gZH8xwDg/myadaline-logo-modified.png">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/gZH8xwDg/myadaline-logo-modified.png">
+    <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font - Inter -->
+    <!-- Google Fonts - Inter for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Apply Inter font family globally and enable smooth scrolling */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000; /* Black background */
-            color: #fff; /* White text */
+            scroll-behavior: smooth;
+        }
+        /* Hover effect for footer links */
+        .footer-link:hover {
+            color: #ffffff;
+            transition: color 0.2s ease-in-out;
+        }
+        /* Custom styles for mobile menu slide-in/fade-in transition */
+        .mobile-menu-transition {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: translateX(100%); /* Start off-screen to the right */
+            opacity: 0; /* Start invisible */
+        }
+        /* State when mobile menu is open */
+        .mobile-menu-transition.is-open {
+            transform: translateX(0); /* Slide into view */
+            opacity: 1; /* Become visible */
         }
     </style>
 </head>
 <body class="bg-black text-white min-h-screen flex flex-col">
 
     <!-- Header Section -->
-    <header class="w-full py-4 px-6 md:px-12 lg:px-24">
-        <nav class="flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex flex-col items-start">
-                <span class="text-lg font-bold tracking-wider">
-                  <img src="https://i.ibb.co/xK1bfKhY/PNG.png" alt="BLACK PEARL Logo" class="w-[400px] md:w-[300px] lg:w-[250px] h-auto">
-                </span>
-                
+    <header class="w-full py-4 px-6 md:px-12 lg:px-24 sticky top-0 bg-black z-50 shadow-lg">
+        <nav class="flex items-center justify-between relative">
+            <!-- Logo - Aligned to the left -->
+            <div class="flex flex-col items-start z-20">
+                <a href="#hero" class="block" aria-label="Black Pearl Associates Home">
+                    <img src="https://i.ibb.co/xK1bfKhY/PNG.png" alt="BLACK PEARL Logo" class="w-[150px] sm:w-[200px] md:w-[200px] lg:w-[250px] h-auto">
+                </a>
             </div>
-            <!-- Responsive Navigation Links with Hover Fix -->
-           <div class="hidden md:flex space-x-8 text-sm font-medium">
-          <a href="#about" class="hover:text-gray-300 transition">About</a>
-          <a href="#services" class="hover:text-gray-300 transition">Services</a>
-          <a href="#process" class="hover:text-gray-300 transition">Process</a>
-          <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
-        </div>
 
-          
+            <!-- Hamburger Button for Mobile Navigation -->
+            <div class="md:hidden">
+                <button id="hamburger-button" class="text-white focus:outline-none" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <i class="fas fa-bars text-2xl" id="hamburger-icon"></i>
+                </button>
+            </div>
 
+            <!-- Mobile Navigation Menu (Hidden by default, shown via JS) -->
+            <div id="mobile-menu" class="mobile-menu-transition hidden md:hidden flex-col md:flex-row md:space-x-8 lg:space-x-12 text-sm font-medium
+                                         fixed top-0 right-0 h-full w-3/4 bg-black p-6 shadow-lg z-40 items-center justify-center pt-20">
+                <a href="#about" class="block py-4 text-2xl hover:text-gray-300 text-center">About</a>
+                <a href="#services" class="block py-4 text-2xl hover:text-gray-300 text-center">Services</a>
+                <a href="#process" class="block py-4 text-2xl hover:text-gray-300 text-center">Process</a>
+                <a href="#contact" class="block py-4 text-2xl hover:text-gray-300 text-center">Contact</a>
+                <a href="#contact"
+                   class="mt-8 bg-blue-600 text-white text-base font-medium py-3 px-6 rounded-full
+                          flex items-center justify-center hover:bg-blue-700 transition duration-300 ease-in-out
+                          w-full max-w-xs">
+                    Talk to an Advisor <span class="ml-2">→</span>
+                </a>
+            </div>
 
-            <!-- Get Started Button -->
-           <a href="#contact" class="bg-blue-600 text-white text-base font-medium py-3 px-6 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300 ease-in-out w-full sm:w-auto">
-  Connect <span class="ml-2">&rarr;</span>
-</a>
-
+            <!-- Desktop Navigation - Centered -->
+            <!-- flex-grow makes this div take up available space, pushing elements around it -->
+            <div class="hidden md:flex flex-row md:space-x-8 lg:space-x-12 text-sm font-medium items-center justify-center flex-grow">
+                <a href="#about" class="block py-2 hover:text-gray-300">About</a>
+                <a href="#services" class="block py-2 hover:text-gray-300">Services</a>
+                <a href="#process" class="block py-2 hover:text-gray-300">Process</a>
+                <a href="#contact" class="block py-2 hover:text-gray-300">Contact</a>
+            </div>
+            
+            <!-- Desktop Call to Action Button - Aligned to the right -->
+            <a href="#contact"
+               class="hidden md:flex bg-blue-600 text-white text-base font-medium py-3 px-6 rounded-full
+                      items-center justify-center hover:bg-blue-700
+                      transition duration-300 ease-in-out
+                      flex-shrink-0">
+                Talk to an Advisor <span class="ml-2">→</span>
+            </a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <main class="flex-grow flex items-center justify-center text-center px-4 md:px-8 lg:px-16">
+    <!-- Main Content Area -->
+    <main id="hero" class="flex-grow flex items-center justify-center text-center px-4 md:px-8 lg:px-16">
         <div class="max-w-4xl mx-auto py-16 md:py-24">
-            <!-- Main Heading -->
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8">
                 Built for Brands That Mean Business.
             </h1>
 
-            <!-- Description Paragraph -->
             <p class="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto opacity-80 mb-12">
                 We deliver legal and financial strategies that don't just check boxes—they build
                 power, mitigate risk, and unlock opportunity. We guide high-growth companies
-                through legal clarity and financial confidence. so your brand grows stronger,
+                through legal clarity and financial confidence, so your brand grows stronger,
                 faster, and with less friction.
             </p>
 
-            <!-- Sub-heading -->
             <p class="text-sm md:text-base font-medium opacity-90 mb-12">
                 Trusted by founders, backed by specialists.
             </p>
 
-            <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16">
                 <a href="#contact" class="bg-blue-600 text-white text-base font-medium py-3 px-6 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300 ease-in-out w-full sm:w-auto">
-  Talk to an Advisor <span class="ml-2">&rarr;</span>
-</a>
+                    Talk to an Advisor <span class="ml-2">→</span>
+                </a>
 
                 <a href="#process" class="border border-white text-white text-base font-medium py-3 px-6 rounded-full hover:bg-white hover:text-black transition duration-300 ease-in-out w-full sm:w-auto">
-  Learn More
-</a>
-
+                    Learn More
+                </a>
             </div>
 
-            <!-- Footer Text -->
             <p class="text-xs md:text-sm opacity-60">
                 More than just providing solutions, we stand beside you.
             </p>
@@ -91,20 +129,15 @@
     </main>
 
     <!-- About Us Section -->
-       <section
-  class="w-full py-16 px-6 md:px-12 lg:px-24 bg-gray-900 text-center"
-  id="about"
-  ">
-
+    <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-gray-900 text-center" id="about">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
                 About Us
             </h2>
-            <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div> <!-- Underline effect -->
-
+            <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div>
             <p class="text-base sm:text-lg md:text-xl leading-relaxed opacity-90 mb-8 max-w-4xl mx-auto">
-                At Black Pearl Associates, we believe in strategy over shortcuts. Inspired by the sharp thinking and relentless
-                execution you'd expect from New York's elite firms, we offer more than legal or financial compliance. we offer
+                At **Black Pearl Associates**, we believe in strategy over shortcuts. Inspired by the sharp thinking and relentless
+                execution you'd expect from New York's elite firms, we offer more than legal or financial compliance—we offer
                 clarity, leverage, and growth.
             </p>
 
@@ -115,7 +148,6 @@
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 lg:gap-16 text-left">
-                <!-- Mission Column -->
                 <div>
                     <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left">
                         Mission
@@ -126,7 +158,6 @@
                     </p>
                 </div>
 
-                <!-- Vision Column -->
                 <div>
                     <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-center md:text-left">
                         Vision
@@ -141,295 +172,265 @@
     </section>
 
     <!-- Services Section -->
-    <!-- Services Section -->
-<section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-black text-center" id="services">
-    <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Services
-        </h2>
-        <div class="w-20 h-1 bg-white mx-auto mb-8 rounded-full"></div>
+    <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-black text-center" id="services">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                Services
+            </h2>
+            <div class="w-20 h-1 bg-white mx-auto mb-8 rounded-full"></div>
 
-        <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold mb-8 opacity-95">
-            What We Do Best
-        </h3>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold mb-8 opacity-95">
+                What We Do Best
+            </h3>
 
-        <p class="text-base sm:text-lg md:text-xl leading-relaxed opacity-80 mb-16 max-w-3xl mx-auto">
-            Comprehensive legal and financial services designed to help you make well-informed decisions and achieve
-            lasting success.
-        </p>
+            <p class="text-base sm:text-lg md:text-xl leading-relaxed opacity-80 mb-16 max-w-3xl mx-auto">
+                Comprehensive legal and financial services designed to help you make well-informed decisions and achieve
+                lasting success.
+            </p>
 
-        <p class="text-base sm:text-lg font-medium opacity-90 mb-12">
-            Our Core Services:
-        </p>
+            <p class="text-base sm:text-lg font-medium opacity-90 mb-12">
+                Our Core Services:
+            </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Service Card 1 -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                <div class="text-4xl mb-4"><i class="fas fa-gavel"></i></div>
-                <h4 class="text-xl font-semibold mb-2">Litigation, Arbitration, and Settlement</h4>
-                <p class="text-sm opacity-70">
-                    Resolving legal disputes within or involving companies with strategic resolution methods.
-                </p>
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4"><i class="fas fa-gavel"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Litigation, Arbitration, and Settlement</h4>
+                    <p class="text-sm opacity-70">
+                        Resolving legal disputes within or involving companies with strategic resolution methods.
+                    </p>
+                </div>
 
-            <!-- Service Card 2 -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                <div class="text-4xl mb-4"><i class="fas fa-users"></i></div>
-                <h4 class="text-xl font-semibold mb-2">Consultancy and Advisory Services</h4>
-                <p class="text-sm opacity-70">
-                    Expert guidance to aid informed decision-making for businesses and individuals.
-                </p>
-            </div>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4"><i class="fas fa-users"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Consultancy and Advisory Services</h4>
+                    <p class="text-sm opacity-70">
+                        Expert guidance to aid informed decision-making for businesses and individuals.
+                    </p>
+                </div>
 
-            <!-- Service Card 3 -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                <div class="text-4xl mb-4"><i class="fas fa-file-contract"></i></div>
-                <h4 class="text-xl font-semibold mb-2">Business Agreements’ Documentation</h4>
-                <p class="text-sm opacity-70">
-                    Drafting legal agreements like MOUs, Partnership Deeds, Share Purchase, Franchise & more for business protection.
-                </p>
-            </div>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4"><i class="fas fa-file-contract"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Business Agreements’ Documentation</h4>
+                    <p class="text-sm opacity-70">
+                        Drafting legal agreements like MOUs, Partnership Deeds, Share Purchase, Franchise & more for business protection.
+                    </p>
+                </div>
 
-            <!-- Service Card 4 -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                <div class="text-4xl mb-4"><i class="fas fa-sitemap"></i></div>
-                <h4 class="text-xl font-semibold mb-2">Business Structuring</h4>
-                <p class="text-sm opacity-70">
-                    Market analysis, project reports, valuations, audits, and fundraising strategy development.
-                </p>
-            </div>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4"><i class="fas fa-sitemap"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Business Structuring</h4>
+                    <p class="text-sm opacity-70">
+                        Market analysis, project reports, valuations, audits, and fundraising strategy development.
+                    </p>
+                </div>
 
-            <!-- Service Card 5 -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                <div class="text-4xl mb-4"><i class="fas fa-building"></i></div>
-                <h4 class="text-xl font-semibold mb-2">Entity Registration Services</h4>
-                <p class="text-sm opacity-70">
-                    Assisting with Partnership, LLP, Company Registrations, and Entity Conversions.
-                </p>
-            </div>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4"><i class="fas fa-building"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Entity Registration Services</h4>
+                    <p class="text-sm opacity-70">
+                        Assisting with Partnership, LLP, Company Registrations, and Entity Conversions.
+                    </p>
+                </div>
 
-            <!-- Service Card 6 -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-                <div class="text-4xl mb-4"><i class="fas fa-certificate"></i></div>
-                <h4 class="text-xl font-semibold mb-2">Licenses and Registrations</h4>
-                <p class="text-sm opacity-70">
-                    Handling registrations for Trademarks, Copyrights, Patents, GST, ISO, Startups, IEC, MSME, FSSAI & more.
-                </p>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="text-4xl mb-4"><i class="fas fa-certificate"></i></div>
+                    <h4 class="text-xl font-semibold mb-2">Licenses and Registrations</h4>
+                    <p class="text-sm opacity-70">
+                        Handling registrations for Trademarks, Copyrights, Patents, GST, ISO, Startups, IEC, MSME, FSSAI & more.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- Our Process Section -->
-   <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-gray-900 text-center text-white" id="process">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Our Process</h2>
-    <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div>
+    <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-gray-900 text-center text-white" id="process">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Our Process</h2>
+            <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div>
 
-    <p class="text-base sm:text-lg md:text-xl leading-relaxed opacity-80 mb-16 max-w-3xl mx-auto">
-      A structured approach designed to cut through the noise and focus on what truly matters for your success.
-    </p>
+            <p class="text-base sm:text-lg md:text-xl leading-relaxed opacity-80 mb-16 max-w-3xl mx-auto">
+                A structured approach designed to cut through the noise and focus on what truly matters for your success.
+            </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Step 1: Analyze -->
-      <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-        <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-          <i class="fas fa-search text-gray-700"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
+                        <i class="fas fa-search text-gray-700"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Analyze</h4>
+                    <p class="text-sm opacity-70">
+                        Deep analysis of your legal and financial situation to understand your unique challenges.
+                    </p>
+                </div>
+
+                <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
+                        <i class="fas fa-lightbulb text-gray-700"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Strategize</h4>
+                    <p class="text-sm opacity-70">
+                        Developing tailored strategies that align with your life and business goals.
+                    </p>
+                </div>
+
+                <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
+                        <i class="fas fa-calendar-alt text-gray-700"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Plan</h4>
+                    <p class="text-sm opacity-70">
+                        Creating clear roadmaps with actionable steps and realistic timelines.
+                    </p>
+                </div>
+
+                <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
+                        <i class="fas fa-play text-gray-700"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Execute</h4>
+                    <p class="text-sm opacity-70">
+                        With precision and diligence, we implement legal solutions tailored to your context and needs.
+                    </p>
+                </div>
+
+                <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
+                        <i class="fas fa-chart-line text-gray-700"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Monitor</h4>
+                    <p class="text-sm opacity-70">
+                        We continuously evaluate outcomes, refine approaches, and ensure compliance at every stage.
+                    </p>
+                </div>
+
+                <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+                    <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
+                        <i class="fas fa-trophy text-gray-700"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Succeed</h4>
+                    <p class="text-sm opacity-70">
+                        Our goal is lasting impact—measured by your sustained growth, risk reduction, and legal clarity.
+                    </p>
+                </div>
+            </div>
         </div>
-        <h4 class="text-xl font-semibold mb-2">Analyze</h4>
-        <p class="text-sm opacity-70">
-          Deep analysis of your legal and financial situation to understand your unique challenges.
-        </p>
-      </div>
-
-      <!-- Step 2: Strategize -->
-      <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-        <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-          <i class="fas fa-lightbulb text-gray-700"></i>
-        </div>
-        <h4 class="text-xl font-semibold mb-2">Strategize</h4>
-        <p class="text-sm opacity-70">
-          Developing tailored strategies that align with your life and business goals.
-        </p>
-      </div>
-
-      <!-- Step 3: Plan -->
-      <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-        <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-          <i class="fas fa-calendar-alt text-gray-700"></i>
-        </div>
-        <h4 class="text-xl font-semibold mb-2">Plan</h4>
-        <p class="text-sm opacity-70">
-          Creating clear roadmaps with actionable steps and realistic timelines.
-        </p>
-      </div>
-
-      <!-- Step 4: Execute -->
-      <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-        <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-          <i class="fas fa-play text-gray-700"></i>
-        </div>
-        <h4 class="text-xl font-semibold mb-2">Execute</h4>
-        <p class="text-sm opacity-70">
-          With precision and diligence, we implement legal solutions tailored to your context and needs.
-        </p>
-      </div>
-
-      <!-- Step 5: Monitor -->
-      <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-        <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-          <i class="fas fa-chart-line text-gray-700"></i>
-        </div>
-        <h4 class="text-xl font-semibold mb-2">Monitor</h4>
-        <p class="text-sm opacity-70">
-          We continuously evaluate outcomes, refine approaches, and ensure compliance at every stage.
-        </p>
-      </div>
-
-      <!-- Step 6: Succeed -->
-      <div class="bg-black p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-        <div class="relative w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-          <i class="fas fa-trophy text-gray-700"></i>
-        </div>
-        <h4 class="text-xl font-semibold mb-2">Succeed</h4>
-        <p class="text-sm opacity-70">
-          Our goal is lasting impact—measured by your sustained growth, risk reduction, and legal clarity.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Contact Us Section -->
-   <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-black text-white text-center"  id="contact">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Contact Us</h2>
-    <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div>
+    <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-black text-white text-center" id="contact">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Contact Us</h2>
+            <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div>
 
-    <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 opacity-95">
-      Get Expert Legal & Financial Guidance
-    </h3>
-    <p class="text-base sm:text-lg leading-relaxed opacity-80 mb-16 max-w-2xl mx-auto">
-      Ready to navigate your legal and financial challenges with confidence?
-      Contact us today for straightforward advice and tailored strategies.
-    </p>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 opacity-95">
+                Get Expert Legal & Financial Guidance
+            </h3>
+            <p class="text-base sm:text-lg leading-relaxed opacity-80 mb-16 max-w-2xl mx-auto">
+                Ready to navigate your legal and financial challenges with confidence?
+                Contact us today for straightforward advice and tailored strategies.
+            </p>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
-      <!-- Contact Form Column -->
-      <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
-        <form class="space-y-6" id="contact-form">
-          <div>
-            <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company name *</label>
-            <input type="text" id="company-name" name="company-name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md" required>
-          </div>
-          <div>
-            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
-            <input type="text" id="name" name="name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md" required>
-          </div>
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
-            <input type="email" id="email" name="email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md" required>
-          </div>
-          <div>
-            <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-            <input type="tel" id="phone" name="phone" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md">
-          </div>
-          <div>
-            <label for="services" class="block text-sm font-medium text-gray-300 mb-2">Services You're Looking For</label>
-            <select id="services" name="services" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md">
-              <option value="">Select a service</option>
-              <option value="Consultancy and Advisory Services">Consultancy and Advisory Services</option>
-              <option value="Business Structuring">Business Structuring</option>
-              <option value="Entity Registration Services">Entity Registration Services</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message (Optional)</label>
-            <textarea id="message" name="message" rows="4" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md"></textarea>
-          </div>
-          <button type="submit" class="w-full bg-white text-black text-base font-medium py-3 px-6 rounded-full hover:bg-gray-200 transition">
-            Send via WhatsApp
-          </button>
-        </form>
-      </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
+                <!-- Contact Form -->
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
+                    <form class="space-y-6" id="contact-form">
+                        <div>
+                            <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company name *</label>
+                            <input type="text" id="company-name" name="company-name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required aria-required="true">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div>
+                            <label for="services" class="block text-sm font-medium text-gray-300 mb-2">Services You're Looking For</label>
+                            <select id="services" name="services" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <option value="">Select a service</option>
+                                <option value="Consultancy and Advisory Services">Consultancy and Advisory Services</option>
+                                <option value="Business Structuring">Business Structuring</option>
+                                <option value="Entity Registration Services">Entity Registration Services</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message (Optional)</label>
+                            <textarea id="message" name="message" rows="4" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-black text-base font-medium py-3 px-6 rounded-full hover:bg-gray-200 transition">
+                            Send via WhatsApp
+                        </button>
+                    </form>
+                </div>
 
-      <!-- Contact Information Column -->
-     <!-- Contact Information Column -->
-<div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
-  <h4 class="text-2xl font-semibold mb-6">Get In Touch</h4>
-  <div class="space-y-4">
-    <div>
-      <p class="text-sm text-gray-400">Company</p>
-      <p class="text-base font-medium">BLACK PEARL ASSOCIATES</p>
-    </div>
-    <div>
-      <p class="text-sm text-gray-400">Email</p>
-      <p class="text-base font-medium">Hello@blackpearlassociates.com</p>
-    </div>
-    <div>
-      <p class="text-sm text-gray-400">Phone</p>
-      <p class="text-base font-medium">+91 95261 91616</p>
-    </div>
-    <div>
-      <p class="text-sm text-gray-400">Office</p>
-      <p class="text-base font-medium"> Room no: 73/104, City Center, Pavangad, Puthyangadi (P O)</p>
-      <p class="text-base font-medium"> Calicut, Kerala - 673021 </p>
-    </div>
-  </div>
-  </section>
+                <!-- Contact Information and Map -->
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
+                    <h4 class="text-2xl font-semibold mb-6">Get In Touch</h4>
+                    <address class="not-italic space-y-4">
+                        <div>
+                            <p class="text-sm text-gray-400">Company</p>
+                            <p class="text-base font-medium">BLACK PEARL ASSOCIATES</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Email</p>
+                            <a href="mailto:Hello@blackpearlassociates.com" class="text-base font-medium footer-link">Hello@blackpearlassociates.com</a>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Phone</p>
+                            <a href="tel:+919526191616" class="text-base font-medium footer-link">+91 95261 91616</a>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Office</p>
+                            <p class="text-base font-medium">Room no: 73/104, City Center,</p>
+                            <p class="text-base font-medium">New York, NY 10001</p>
+                        </div>
+                        <div class="aspect-video w-full">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2505080036136!2d-73.9878590845946!3d40.7484403793282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598c199580b3%3A0x60d1b46a59e9c3c1!2sCity%20Center%2C%20New%20York%2C%20NY%2010001%2C%20USA!5e0!3m2!1sen!2sin!4v1704207038166!5m2!1sen!2sin"
+                                width="100%"
+                                height="100%"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Location of Black Pearl Associates office">
+                            </iframe>
+                        </div>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const company = document.getElementById('company-name').value.trim();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const service = document.getElementById('services').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    const whatsappNumber = "9199999999"; // No plus sign or spaces
-    const text = `New Contact Submission:%0A
-Company: ${company}%0A
-Name: ${name}%0A
-Email: ${email}%0A
-Phone: ${phone}%0A
-Service: ${service}%0A
-Message: ${message || "N/A"}`;
-
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-    window.open(whatsappURL, '_blank');
-  });
-</script>
-<footer class="bg-[#0f172a] text-gray-400 py-8 px-4 sm:px-6 lg:px-8 rounded-t-lg">
+    <!-- Footer Section -->
+    <footer class="bg-[#0f172a] text-gray-400 py-8 px-4 sm:px-6 lg:px-8 rounded-t-lg">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-8 border-b border-gray-700">
 
-            <!-- Black Pearl Associates Info -->
-            <div class="col-span-1 md:col-span-1 lg:col-span-2">
-                <div class="text-white text-2xl font-semibold mb-2">
-                   <!-- Logo -->
-            <div class="flex flex-col items-start">
-                <span class="text-lg font-bold tracking-wider">
-                  <img src="https://i.ibb.co/xK1bfKhY/PNG.png" alt="BLACK PEARL Logo" class="w-[400px] md:w-[300px] lg:w-[400px] h-auto">
-                </span>
-                
-            </div>
-
+            <!-- Company Info Column -->
+            <div class="col-span-1 md:col-span-1 lg:col-span-2 text-center md:text-left">
+                <div class="text-white text-2xl font-semibold mb-2 flex justify-center md:justify-start">
+                    <div class="flex flex-col items-center md:items-start">
+                        <img src="https://i.ibb.co/xK1bfKhY/PNG.png" alt="BLACK PEARL Logo" class="w-[180px] sm:w-[220px] md:w-[180px] lg:w-[220px] h-auto">
+                    </div>
                 </div>
-                
-
                 <p class="text-sm leading-relaxed mb-4">
                     We're here to guide you through the complexities of legal and financial matters with clarity and confidence.
                 </p>
-                
+                <div class="text-white font-medium mb-1">Black Pearl</div>
+                <p class="text-sm mb-4">Corporate Law & Tax Consultation</p>
             </div>
 
-            <!-- Services Section -->
-            <div>
+            <!-- Services Links Column -->
+            <div class="text-center md:text-left">
                 <h3 class="text-white font-semibold text-lg mb-4">Services</h3>
                 <ul class="space-y-2">
                     <li><a href="#services" class="footer-link">Consultancy & Advisory Services</a></li>
@@ -441,8 +442,8 @@ Message: ${message || "N/A"}`;
                 </ul>
             </div>
 
-            <!-- Contact Section -->
-            <div>
+            <!-- Contact Info & Social Links Column -->
+            <div class="text-center md:text-left">
                 <h3 class="text-white font-semibold text-lg mb-4">Contact</h3>
                 <ul class="space-y-2">
                     <li>
@@ -456,18 +457,17 @@ Message: ${message || "N/A"}`;
                     <li class="mt-4">
                         <span class="block text-white font-medium">Excellence in:</span>
                         <p class="text-sm mb-4">Corporate Law & Tax Consultation</p>
-                        <!-- Social Media Icons (Moved Here) -->
-                        <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/company/blackpearlassociates" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <div class="flex justify-center md:justify-start space-x-4">
+                            <a href="https://www.linkedin.com/company/blackpearlassociates" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors duration-200">
                                 <i class="fab fa-linkedin text-2xl"></i>
                             </a>
-                            <a href="https://twitter.com/blackpearlassociates" target="_blank" aria-label="Twitter" class="text-gray-400 hover:text-white transition-colors duration-200">
+                            <a href="https://twitter.com/blackpearlassociates" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-gray-400 hover:text-white transition-colors duration-200">
                                 <i class="fab fa-twitter-square text-2xl"></i>
                             </a>
-                            <a href="https://www.facebook.com/blackpearlassociates" target="_blank" aria-label="Facebook" class="text-gray-400 hover:text-white transition-colors duration-200">
+                            <a href="https://www.facebook.com/blackpearlassociates" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-gray-400 hover:text-white transition-colors duration-200">
                                 <i class="fab fa-facebook-square text-2xl"></i>
                             </a>
-                            <a href="https://www.instagram.com/blackpearlassociates" target="_blank" aria-label="Instagram" class="text-gray-400 hover:text-white transition-colors duration-200">
+                            <a href="https://www.instagram.com/blackpearlassociates" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-400 hover:text-white transition-colors duration-200">
                                 <i class="fab fa-instagram-square text-2xl"></i>
                             </a>
                         </div>
@@ -476,17 +476,84 @@ Message: ${message || "N/A"}`;
             </div>
         </div>
 
-        <!-- Copyright Section -->
-          <div class="flex flex-col sm:flex-row justify-between items-center text-gray-500 text-sm border-t border-gray-300 pt-4">
-    <div class="text-center sm:text-left mb-2 sm:mb-0">
-      &copy; 2025 Black Pearl Associates. All rights reserved.
-    </div>
-    <div class="text-center sm:text-right">
-      Shaped by <a href="https://laggertechnologies.com" target="_blank" class="text-blue-600 hover:underline">Lagger Technologies</a>
-    </div>
-  </div>
+        <!-- Copyright and Credits -->
+        <div class="mt-8 flex flex-col sm:flex-row justify-between items-center text-sm">
+            <div class="text-center sm:text-left mb-2 sm:mb-0">
+                &copy; 2025 Black Pearl Associates. All rights reserved.
+            </div>
+            <div class="text-center sm:text-right">
+                Shaped by <a href="https://laggertechnologies.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Lagger Technologies</a>
+            </div>
+        </div>
     </footer>
-    <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- JavaScript for Mobile Menu and Contact Form -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Event listener for hamburger menu toggle
+            hamburgerButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden'); // Toggle visibility
+                mobileMenu.classList.toggle('flex');   // Toggle display type
+                mobileMenu.classList.toggle('is-open'); // Toggle for CSS transition
+
+                // Change hamburger icon to 'X' and vice-versa
+                if (mobileMenu.classList.contains('is-open')) {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-times');
+                    hamburgerButton.setAttribute('aria-expanded', 'true'); // Update ARIA attribute
+                } else {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                    hamburgerButton.setAttribute('aria-expanded', 'false'); // Update ARIA attribute
+                }
+            });
+
+            // Close mobile menu when a link inside it is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('is-open')) {
+                        mobileMenu.classList.remove('flex');
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('is-open');
+                        hamburgerIcon.classList.remove('fa-times');
+                        hamburgerIcon.classList.add('fa-bars');
+                        hamburgerButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            // Handle Contact Form Submission for WhatsApp
+            document.getElementById('contact-form').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent default form submission
+
+                // Get form field values
+                const company = document.getElementById('company-name').value.trim();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const service = document.getElementById('services').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                const whatsappNumber = "919526191616"; // Your WhatsApp number
+                
+                // Construct the WhatsApp message text
+                let text = `New Contact Submission:\n\n`;
+                text += `Company Name: ${company}\n`;
+                text += `Name: ${name}\n`;
+                text += `Email: ${email}\n`;
+                text += `Phone Number: ${phone || "N/A"}\n`; // Use "N/A" if phone is empty
+                text += `Service: ${service || "Not specified"}\n`; // Use "Not specified" if service is empty
+                text += `Message: ${message || "N/A"}`; // Use "N/A" if message is empty
+
+                // Encode the text for URL and open WhatsApp
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+                window.open(whatsappURL, '_blank');
+            });
+        });
+    </script>
 </body>
 </html>
