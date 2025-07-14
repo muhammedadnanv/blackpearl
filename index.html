@@ -284,7 +284,70 @@
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Contact Us</h2>
             <div class="w-20 h-1 bg-white mx-auto mb-12 rounded-full"></div>
+              <form class="space-y-6" id="contact-form">
+  <div>
+    <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company name *</label>
+    <input type="text" id="company-name" name="company-name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+  </div>
+  <div>
+    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+    <input type="text" id="name" name="name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+  </div>
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+    <input type="email" id="email" name="email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
+  </div>
+  <div>
+    <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+    <input type="tel" id="phone" name="phone" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+  </div>
+  <div>
+    <label for="services" class="block text-sm font-medium text-gray-300 mb-2">Services You're Looking For</label>
+    <select id="services" name="services" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+      <option value="">Select a service</option>
+      <option value="Consultancy and Advisory Services">Consultancy and Advisory Services</option>
+      <option value="Business Structuring">Business Structuring</option>
+      <option value="Entity Registration Services">Entity Registration Services</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+  <div>
+    <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message (Optional)</label>
+    <textarea id="message" name="message" rows="4" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+  </div>
+  <button type="submit" class="w-full bg-white text-black text-base font-medium py-3 px-6 rounded-full hover:bg-gray-200 transition">
+    Send via WhatsApp
+  </button>
+</form>
 
+<script>
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const company = document.getElementById("company-name").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value || "N/A";
+    const service = document.getElementById("services").value || "Not Specified";
+    const message = document.getElementById("message").value || "No message";
+
+    const whatsappMessage = `
+*New Contact Form Submission:*
+🔹 *Company:* ${company}
+🔹 *Name:* ${name}
+🔹 *Email:* ${email}
+🔹 *Phone:* ${phone}
+🔹 *Service:* ${service}
+🔹 *Message:* ${message}
+    `.trim();
+
+    const encodedMsg = encodeURIComponent(whatsappMessage);
+    const phoneNumber = "919526191616"; // without the + sign for wa.me links
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+
+    window.open(whatsappURL, "_blank");
+  });
+</script>
             <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 opacity-95">
                 Get Expert Legal & Financial Guidance
             </h3>
@@ -295,41 +358,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
                 <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
-                    <form class="space-y-6" id="contact-form">
-                        <div>
-                            <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company name *</label>
-                            <input type="text" id="company-name" name="company-name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
-                        </div>
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
-                            <input type="text" id="name" name="name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
-                            <input type="email" id="email" name="email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
-                        </div>
-                        <div>
-                            <label for="services" class="block text-sm font-medium text-gray-300 mb-2">Services You're Looking For</label>
-                            <select id="services" name="services" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
-                                <option value="">Select a service</option>
-                                <option value="Consultancy and Advisory Services">Consultancy and Advisory Services</option>
-                                <option value="Business Structuring">Business Structuring</option>
-                                <option value="Entity Registration Services">Entity Registration Services</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message (Optional)</label>
-                            <textarea id="message" name="message" rows="4" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-white text-black text-base font-medium py-3 px-6 rounded-full hover:bg-gray-200 transition">
-                            Send via WhatsApp
-                        </button>
-                    </form>
+                   
                 </div>
 
                 <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
