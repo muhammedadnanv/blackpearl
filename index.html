@@ -299,7 +299,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
                 <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
-                   <form class="space-y-6" id="contact-form">
+                  <form class="space-y-6" id="whatsappForm">
   <div>
     <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company name *</label>
     <input type="text" id="company-name" name="company-name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" required>
@@ -336,33 +336,25 @@
 </form>
 
 <script>
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
+  document.getElementById('whatsappForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const company = document.getElementById("company-name").value;
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value || "N/A";
-    const service = document.getElementById("services").value || "Not Specified";
-    const message = document.getElementById("message").value || "No message";
+    const companyName = encodeURIComponent(document.getElementById('company-name').value.trim());
+    const name = encodeURIComponent(document.getElementById('name').value.trim());
+    const email = encodeURIComponent(document.getElementById('email').value.trim());
+    const phone = encodeURIComponent(document.getElementById('phone').value.trim());
+    const service = encodeURIComponent(document.getElementById('services').value);
+    const details = encodeURIComponent(document.getElementById('message').value.trim());
 
-    const whatsappMessage = `
-*New Contact Form Submission:*
- *Company:* ${company}
- *Name:* ${name}
- *Email:* ${email}
- *Phone:* ${phone}
- *Service:* ${service}
- *Message:* ${message}
-    `.trim();
+    const message = `Hey, I am ${name} from ${companyName}, my email is ${email}, phone: ${phone || 'N/A'}. I am interested in the service: ${service}. Project details: ${details || 'N/A'}`;
 
-    const encodedMsg = encodeURIComponent(whatsappMessage);
-    const phoneNumber = "919526191616"; // without the + sign for wa.me links
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+    const phoneNumber = '919526191616'; // ✅ Updated WhatsApp number
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
 
-    window.open(whatsappURL, "_blank");
+    window.open(whatsappURL, '_blank');
   });
 </script>
+
                 </div>
 
                 <div class="bg-gray-900 p-8 rounded-lg shadow-lg text-left">
