@@ -391,11 +391,11 @@
     updateCount();
   });
 </script>
-    <style>
+         <style>
   .clients-section {
     padding: 60px 20px;
     text-align: center;
-    background-color: #000; /* Page background stays black */
+    background-color: #000;
     color: #fff;
   }
 
@@ -413,26 +413,28 @@
   }
 
   .slider-wrapper {
+    min-width: 90vw; /* Bigger than website container */
     overflow: hidden;
-    border-radius: 16px;
-    padding: 30px;
+    border-radius: 20px;
+    padding: 40px;
     margin: 0 auto;
-    max-width: 1100px;
-    border: 2px solid #333;
+    border: 6px solid #444; /* Thicker frame */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .scrolling-logos {
     display: flex;
-    animation: scrollLeft 35s linear infinite;
     gap: 60px;
+    animation: scrollLeft 30s linear infinite;
     width: max-content;
   }
 
   .logo-group {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 30px;
+    display: flex;
+    gap: 60px;
   }
 
   .logo-group img {
@@ -455,17 +457,18 @@
   }
 
   @media (max-width: 768px) {
-    .logo-group img {
-      width: 100px;
-      padding: 8px;
-    }
-
     .slider-wrapper {
+      min-width: 100%;
       padding: 20px;
     }
 
     .scrolling-logos {
       gap: 40px;
+    }
+
+    .logo-group img {
+      width: 100px;
+      padding: 8px;
     }
   }
 </style>
@@ -476,7 +479,6 @@
 
   <div class="slider-wrapper">
     <div class="scrolling-logos">
-      <!-- Logo Group 1 -->
       <div class="logo-group">
         <img src="https://via.placeholder.com/140x80?text=Ekata" alt="Ekata">
         <img src="https://via.placeholder.com/140x80?text=Grand" alt="Grand">
@@ -488,7 +490,6 @@
         <img src="https://via.placeholder.com/140x80?text=Lulu" alt="Lulu">
       </div>
 
-      <!-- Duplicate for seamless scroll -->
       <div class="logo-group">
         <img src="https://via.placeholder.com/140x80?text=Ekata" alt="Ekata">
         <img src="https://via.placeholder.com/140x80?text=Grand" alt="Grand">
@@ -501,7 +502,7 @@
       </div>
     </div>
   </div>
-</section> 
+</section>
   
   
     <section class="w-full py-16 px-6 md:px-12 lg:px-24 bg-black text-white text-center" id="contact">
